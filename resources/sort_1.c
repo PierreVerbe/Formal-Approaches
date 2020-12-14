@@ -8,13 +8,10 @@
 
 /*@
 requires 0 < l;
-//requires \valid(t + (0 .. (l-1)));
-requires \valid_range(t,0,l-1);
-
+requires \valid(t + (0 .. l - 1));
 requires 0 <= i < l;
 requires 0 <= j < l;
 ensures \old(t[i]) == t[j] && \old(t[j]) == t[i];
-
 */
 void swap(int *t, int l, int i,int j){
   int tmp;
@@ -27,7 +24,7 @@ void swap(int *t, int l, int i,int j){
 
 /*@
 requires l >0;
-requires \valid_range(t,0,l-1);
+requires \valid(t + (0 .. l - 1));
 
 ensures sorted{Here}(t,l);
 */
@@ -36,8 +33,7 @@ void sort(int *t, int l) {
   int j;
   
   /*@
-  loop invariant l>0;
-  loop assigns i, l;
+  //loop assigns i, l;
   
   loop invariant 0 <= i;
   loop invariant i < l;
@@ -47,7 +43,7 @@ void sort(int *t, int l) {
   */
   for (i=0;i<l;i++) {
 	/*@
-	loop assigns i, j;
+	//loop assigns i, j;
 	
 	loop invariant 0 <= i <= j < l;
 	loop variant l-j;
