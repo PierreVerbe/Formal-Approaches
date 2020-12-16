@@ -22,35 +22,41 @@ void swap(int *t, int l, int i, int j){
 }
 
 /*@
-requires l > 0;
-requires \valid(t + (0 .. (l-1)));
-//requires \valid_range(t, 0, l-1);
+  requires l > 0;
+  requires \valid(t + (0 .. (l-1)));
 
-ensures sorted{Here}(t, l);
+  ensures sorted{Here}(t, l);
 */
 void sort(int *t, int l) {
   int i;
   int j;
   
   /*@
-  //slide 64
-  loop invariant l > 0;
-  loop assigns i, l;
-  
-  loop invariant 0 <= i;
-  loop invariant i < l;
+    //slide 64
+    loop assigns i, j, *t;
 
-  loop invariant sorted{Here}(t,i);
-  loop variant l-i;
+    loop invariant 0 <= i <= l;
+    loop invariant 0 <= j <= l;
+    loop invariant sorted{Here}(t, i);
+
+    loop variant l-i;
   */
   for (i=0; i<l; i++) {
 
-	/*@
-	loop assigns i, j;
-	
-	loop invariant 0 <= i <= j < l;
-	loop variant l-j;
-	*/
+    /*@
+      loop assigns i, j, *t;
+
+      // loop assigns t[i], t[j];
+
+      loop invariant 0 <= i <= l;
+      loop invariant i <= j <= l;
+      loop invariant sorted{Here}(t, i + 1);
+      
+      // loop invariant \forall integer i, j;
+      //  0 <= i <= j < length ==> arr[i] <= arr[j];
+
+      loop variant l-j;
+    */
     for (j=i; j<l; j++) {
       if (t[i] > t[j]) swap(t, l, i, j);
     }
