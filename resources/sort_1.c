@@ -1,22 +1,19 @@
 #include <stdio.h>
 
 /*@
-	predicate sorted{L}(int* arr, integer length) =
-	\forall integer i,j;
-		0 <= i <= j < length ==> arr[i] <= arr[j];
+  predicate sorted{L}(int* arr, integer length) =
+  \forall integer i, j;
+    0 <= i <= j < length ==> arr[i] <= arr[j];
 */
 
 /*@
-requires 0 < l;
-//requires \valid(t + (0 .. (l-1)));
-requires \valid_range(t,0,l-1);
-
-requires 0 <= i < l;
-requires 0 <= j < l;
-ensures \old(t[i]) == t[j] && \old(t[j]) == t[i];
-
+  requires 0 < l;
+  requires \valid(t + (0 .. (l-1)));
+  requires 0 <= i < l;
+  requires 0 <= j < l;
+  ensures \old(t[i]) == t[j] && \old(t[j]) == t[i];
 */
-void swap(int *t, int l, int i,int j){
+void swap(int *t, int l, int i, int j){
   int tmp;
   tmp = t[i];
   t[i] = t[j];
