@@ -1,6 +1,8 @@
 # Formal approaches
 
 ## About this repository
+This reposirtory contains an end-of-semester project in formal approach. <br>
+The aim is to prove mathematically the correct functioning of a bubble sorting system. <br>
 
 ## Prerequisite
 * Install GNU compiler collection <br>
